@@ -1,7 +1,6 @@
 name: starreviews
 description: A flutter package for displaying detailed star reviews
-version: 0.0.1
-author: Burak Taban
+version: 1.0.1
 homepage: https://github.com/buraktabn/starreviews
 
 environment:
@@ -16,5 +15,5 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-.
+
 flutter:

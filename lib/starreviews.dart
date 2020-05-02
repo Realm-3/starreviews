@@ -58,7 +58,7 @@ class StarReviews extends StatelessWidget {
                 Row(
                   children: <Widget>[
                     _StarDisplay(
-                      value: 4,
+                      value: getAverage().toInt(),
                     ),
                     SizedBox(
                       width: 5,
