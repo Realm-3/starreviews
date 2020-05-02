@@ -14,13 +14,27 @@ class App extends StatelessWidget {
 }
 
 class MyApp extends StatelessWidget {
+
+  List<String> _names = ['Star 5', 'Star 4', 'Star 3', 'Star 2', 'Star 1'];
+  List<double> _values = [0.5, 0.2, 0.8, 0.5, 0.1];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: StarReviews(),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: <Widget>[
+              StarReviews(
+                total: 20,
+                starNames: _names,
+                values: _values,
+                showPercentage: true,
+              ),
+              SizedBox(height: 30,),
+            ],
+          ),
         )
       ),
     );
