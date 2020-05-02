@@ -1,14 +1,39 @@
-# starreviews
-
+ # starreviews
+ 
 A flutter package for displaying detailed star reviews
 
-## Getting Started
+<img src=https://github.com/buraktabn/starreviews/raw/master/images/example.png width="200" />
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+## Usage
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+```dart
+List<String> _names = ['Star 5', 'Star 4', 'Star 3', 'Star 2', 'Star 1'];  
+List<double> _values = [0.5, 0.2, 0.8, 0.5, 0.1];
+```
+```dart
+StarReviews(  
+  total: 20,  
+  starNames: _names,  
+  values: _values,  
+  showPercentage: true,  
+)
+```
+
+## Customization
+Here is a list of properties available to customize the widget:
+
+|        Name        	|       Type      	|                 Description                	|
+|:------------------:	|:---------------:	|:------------------------------------------:	|
+| total| int| total numbers of reviews           	|
+| showHeader| bool| if false, hides header           	|
+| starNames| List<String>| list of star names (max 5)           	|
+| percentageStyle| TextStyle| style applied to percentage                                  	|
+| showPercentage| bool| if false, hides percentage                                 	|
+| valueColor| Color| color of the progressbar             	|
+| progressBarBackgroundColor| Color| color of the progress bar background                      	|
+| values| List<double>| list of review values as `double`                     	|
+
+  
+## Contributions
+
+Contributions of any kind are more than welcome! Feel free to fork and improve in any way you want, make a pull request, or open an issue.
