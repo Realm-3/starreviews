@@ -4,6 +4,21 @@ A flutter package for displaying detailed star reviews
 
 <img src=https://github.com/buraktabn/starreviews/raw/master/images/example.png width="200" />
 
+## Install
+
+```yaml
+dependencies:  
+  starreviews: ^1.0.1
+```
+
+```console
+$  flutter pub get
+```
+
+```dart
+import  'package:starreviews/starreviews.dart';
+```
+
 ## Usage
 
 ```dart
