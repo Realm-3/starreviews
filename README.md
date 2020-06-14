@@ -41,6 +41,8 @@ Here is a list of properties available to customize the widget:
 |:------------------:	|:---------------:	|:------------------------------------------:	|
 | total| int| total numbers of reviews           	|
 | showHeader| bool| if false, hides header           	|
+| showBottom| bool| if false, hides bottom           	|
+| showPercentage| bool| if false, hides rating number           	|
 | starNames| List<String>| list of star names (max 5)           	|
 | percentageStyle| TextStyle| style applied to percentage                                  	|
 | showPercentage| bool| if false, hides percentage                                 	|
