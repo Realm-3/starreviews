@@ -20,10 +20,15 @@ class StarReviews extends StatelessWidget {
   final Color progressBarBackgroundColor;
   final List<double> values;
 
+  final double starSize;
+  final Color starColor;
+
   StarReviews(
       {Key key,
       this.total,
       this.starNames,
+      this.starSize = 16,
+      this.starColor = const Color(0xffffd900),
       this.showRatingNumber = true,
       this.showHeader = true,
       this.showBottom = true,
@@ -62,7 +67,8 @@ class StarReviews extends StatelessWidget {
                 Row(
                   children: <Widget>[
                     _StarDisplay(
-                      value: getAverage().toInt(),
+                      value: getAverage(),
+                      size: ,
                     ),
                     SizedBox(
                       width: 5,
@@ -167,6 +173,14 @@ class StarReviews extends StatelessWidget {
     ));
   }
 
+  double _roundDecimal(double number) {
+    int decimals = 1;
+    int fac = pow(10, decimals);
+    double d = number;
+    d = (d * fac).round() / fac;
+    return d;
+  }
+
   double getAverage() {
     double total = 0;
     this.values.forEach((value) {
@@ -176,16 +190,20 @@ class StarReviews extends StatelessWidget {
     int fac = pow(10, 2);
     double d = total / 5;
 
-    return ((d * fac).round() / fac) * 10;
+    return _roundDecimal(((d * fac).round() / fac) * 10);
   }
 }
 
 class _StarDisplay extends StatelessWidget {
-  final int value;
+  final double value;
+  final double size;
   final Color color;
 
   const _StarDisplay(
-      {Key key, this.value = 0, this.color = const Color(0xffffd900)})
+      {Key key,
+        this.value = 0,
+        this.size = 16,
+        this.color = const Color(0xffffd900)})
       : assert(value != null),
         super(key: key);
 
@@ -195,8 +213,15 @@ class _StarDisplay extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: List.generate(5, (index) {
         return Icon(
-          index < value ? Icons.star : Icons.star_border,
+          (value == 5)
+              ? Icons.star
+              : index + 1 < value
+              ? Icons.star
+              : (index == value.toInt() && value % 1 != 0)
+              ? Icons.star_half
+              : Icons.star_border,
           color: this.color,
+          size: this.size,
         );
       }),
     );

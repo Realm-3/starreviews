@@ -49,6 +49,8 @@ Here is a list of properties available to customize the widget:
 | valueColor| Color| color of the progressbar             	|
 | progressBarBackgroundColor| Color| color of the progress bar background                      	|
 | values| List<double>| list of review values as `double`                     	|
+| starSize| double| the size of the stars                     	|
+| starColor| Color| the color of the stars                     	|
 
   
 ## Contributions
