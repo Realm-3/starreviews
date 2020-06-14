@@ -20,10 +20,15 @@ class StarReviews extends StatelessWidget {
   final Color progressBarBackgroundColor;
   final List<double> values;
 
+  final double starSize;
+  final Color starColor;
+
   StarReviews(
       {Key key,
       this.total,
       this.starNames,
+      this.starSize = 16,
+      this.starColor = const Color(0xffffd900),
       this.showRatingNumber = true,
       this.showHeader = true,
       this.showBottom = true,
@@ -63,6 +68,7 @@ class StarReviews extends StatelessWidget {
                   children: <Widget>[
                     _StarDisplay(
                       value: getAverage(),
+                      size: ,
                     ),
                     SizedBox(
                       width: 5,
