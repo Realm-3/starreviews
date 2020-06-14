@@ -58,7 +58,7 @@ class StarReviews extends StatelessWidget {
                 Row(
                   children: <Widget>[
                     _StarDisplay(
-                      value: getAverage().toInt(),
+                      value: getAverage(),
                     ),
                     SizedBox(
                       width: 5,
@@ -162,7 +162,7 @@ class StarReviews extends StatelessWidget {
 }
 
 class _StarDisplay extends StatelessWidget {
-  final int value;
+  final double value;
   final Color color;
 
   const _StarDisplay(
@@ -175,8 +175,16 @@ class _StarDisplay extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: List.generate(5, (index) {
+        print(index);
+        var star = Icons.star_border;
+        if (value - index >= 0.8) {
+          star = Icons.star;
+        } else if (value - index >= 0.3) {
+          star = Icons.star_half;
+        }
+
         return Icon(
-          index < value ? Icons.star : Icons.star_border,
+          star,
           color: this.color,
         );
       }),
