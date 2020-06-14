@@ -26,12 +26,12 @@ List<double> _values = [0.5, 0.2, 0.8, 0.5, 0.1];
           padding: const EdgeInsets.all(16),
           child: Column(
             children: <Widget>[
-StarReviews(
-  total: 20,
-  starNames: _names,
-  values: _values,
-  showPercentage: true,
-),
+              StarReviews(
+                total: 20,
+                starNames: _names,
+                values: _values,
+                showPercentage: true,
+              ),
               SizedBox(height: 30,),
             ],
           ),
