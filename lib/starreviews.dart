@@ -8,6 +8,8 @@ import 'package:starreviews/progress-bar-layout.dart';
 class StarReviews extends StatelessWidget {
   final int total;
   final bool showHeader;
+  final bool showBottom;
+  final bool showRatingNumber;
 
   final List<String> starNames;
   final TextStyle starNameStyle;
@@ -22,7 +24,9 @@ class StarReviews extends StatelessWidget {
       {Key key,
       this.total,
       this.starNames,
+      this.showRatingNumber = true,
       this.showHeader = true,
+      this.showBottom = true,
       this.showPercentage = true,
       this.starNameStyle = const TextStyle(fontSize: 12),
       this.percentageStyle = const TextStyle(fontSize: 12),
@@ -69,13 +73,21 @@ class StarReviews extends StatelessWidget {
                     )
                   ],
                 ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  '${this.total} ratings',
-                  style:
-                      TextStyle(color: const Color(0xff919191), fontSize: 12),
+
+                Visibility(
+                  visible: showRatingNumber,
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        '${this.total} ratings',
+                        style:
+                        TextStyle(color: const Color(0xff919191), fontSize: 12),
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: 17,
@@ -84,66 +96,73 @@ class StarReviews extends StatelessWidget {
             ),
           ),
         ),
-        ProgressBarLayout(
-          starName: this.starNames[0],
-          value: this.values[0],
-          showPercentage: this.showPercentage,
-          starNameStyle: this.starNameStyle,
-          percentageStyle: this.percentageStyle,
-          valueColor: this.valueColor,
-          progressBarBackgroundColor: this.progressBarBackgroundColor,
-        ),
-        SizedBox(
-          height: 11,
-        ),
-        ProgressBarLayout(
-          starName: this.starNames[1],
-          value: this.values[1],
-          showPercentage: this.showPercentage,
-          starNameStyle: this.starNameStyle,
-          percentageStyle: this.percentageStyle,
-          valueColor: this.valueColor,
-          progressBarBackgroundColor: this.progressBarBackgroundColor,
-        ),
-        SizedBox(
-          height: 11,
-        ),
-        ProgressBarLayout(
-          starName: this.starNames[2],
-          value: this.values[2],
-          showPercentage: this.showPercentage,
-          starNameStyle: this.starNameStyle,
-          percentageStyle: this.percentageStyle,
-          valueColor: this.valueColor,
-          progressBarBackgroundColor: this.progressBarBackgroundColor,
-        ),
-        SizedBox(
-          height: 11,
-        ),
-        ProgressBarLayout(
-          starName: this.starNames[3],
-          value: this.values[3],
-          showPercentage: this.showPercentage,
-          starNameStyle: this.starNameStyle,
-          percentageStyle: this.percentageStyle,
-          valueColor: this.valueColor,
-          progressBarBackgroundColor: this.progressBarBackgroundColor,
-        ),
-        SizedBox(
-          height: 11,
-        ),
-        ProgressBarLayout(
-          starName: this.starNames[4],
-          value: this.values[4],
-          showPercentage: this.showPercentage,
-          starNameStyle: this.starNameStyle,
-          percentageStyle: this.percentageStyle,
-          valueColor: this.valueColor,
-          progressBarBackgroundColor: this.progressBarBackgroundColor,
-        ),
-        SizedBox(
-          height: 11,
-        ),
+        Visibility(
+          visible: showBottom,
+          child: Column(
+            children: <Widget>[
+              ProgressBarLayout(
+                starName: this.starNames[0],
+                value: this.values[0],
+                showPercentage: this.showPercentage,
+                starNameStyle: this.starNameStyle,
+                percentageStyle: this.percentageStyle,
+                valueColor: this.valueColor,
+                progressBarBackgroundColor: this.progressBarBackgroundColor,
+              ),
+              SizedBox(
+                height: 11,
+              ),
+              ProgressBarLayout(
+                starName: this.starNames[1],
+                value: this.values[1],
+                showPercentage: this.showPercentage,
+                starNameStyle: this.starNameStyle,
+                percentageStyle: this.percentageStyle,
+                valueColor: this.valueColor,
+                progressBarBackgroundColor: this.progressBarBackgroundColor,
+              ),
+              SizedBox(
+                height: 11,
+              ),
+              ProgressBarLayout(
+                starName: this.starNames[2],
+                value: this.values[2],
+                showPercentage: this.showPercentage,
+                starNameStyle: this.starNameStyle,
+                percentageStyle: this.percentageStyle,
+                valueColor: this.valueColor,
+                progressBarBackgroundColor: this.progressBarBackgroundColor,
+              ),
+              SizedBox(
+                height: 11,
+              ),
+              ProgressBarLayout(
+                starName: this.starNames[3],
+                value: this.values[3],
+                showPercentage: this.showPercentage,
+                starNameStyle: this.starNameStyle,
+                percentageStyle: this.percentageStyle,
+                valueColor: this.valueColor,
+                progressBarBackgroundColor: this.progressBarBackgroundColor,
+              ),
+              SizedBox(
+                height: 11,
+              ),
+              ProgressBarLayout(
+                starName: this.starNames[4],
+                value: this.values[4],
+                showPercentage: this.showPercentage,
+                starNameStyle: this.starNameStyle,
+                percentageStyle: this.percentageStyle,
+                valueColor: this.valueColor,
+                progressBarBackgroundColor: this.progressBarBackgroundColor,
+              ),
+              SizedBox(
+                height: 11,
+              ),
+            ],
+          ),
+        )
       ],
     ));
   }
