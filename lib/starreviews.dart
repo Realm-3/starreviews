@@ -3,7 +3,8 @@ library starreviews;
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:starreviews/progress-bar-layout.dart';
+import 'file:///D:/GitHub/starreviews/lib/progress_bar/progress_bar_layout.dart';
+import 'package:starreviews/star_display.dart';
 
 class StarReviews extends StatelessWidget {
   final int total;
@@ -23,10 +24,12 @@ class StarReviews extends StatelessWidget {
   final double starSize;
   final Color starColor;
 
+  final double average;
+
   StarReviews(
       {Key key,
-      this.total,
-      this.starNames,
+      @required this.total,
+      @required this.starNames,
       this.starSize = 16,
       this.starColor = const Color(0xffffd900),
       this.showRatingNumber = true,
@@ -37,15 +40,16 @@ class StarReviews extends StatelessWidget {
       this.percentageStyle = const TextStyle(fontSize: 12),
       this.valueColor = const Color(0xff656565),
       this.progressBarBackgroundColor = Colors.white,
-      this.values})
+      @required this.average,
+      @required this.values})
       : assert(total != null),
         super(key: key) {
     if (values == null) {
       throw ArgumentError('value cannot be empty');
     }
 
-    if (starNames.length > 5) {
-      throw ArgumentError('starNames\' cannot be greater than 5');
+    if (starNames.length != values.length) {
+      throw ArgumentError('startNames and values\' length different');
     }
 
     if (starNames == null) {
@@ -66,20 +70,20 @@ class StarReviews extends StatelessWidget {
               children: <Widget>[
                 Row(
                   children: <Widget>[
-                    _StarDisplay(
-                      value: getAverage(),
-                      size: ,
+                    StarDisplay(
+                      value: this.average,
+                      size: starSize,
+                      starCounts: this.starNames.length,
                     ),
                     SizedBox(
                       width: 5,
                     ),
                     Text(
-                      '${getAverage()} out of 5',
+                      '${this.average} out of ${this.starNames.length}',
                       style: TextStyle(fontSize: 14),
                     )
                   ],
                 ),
-
                 Visibility(
                   visible: showRatingNumber,
                   child: Column(
@@ -89,8 +93,8 @@ class StarReviews extends StatelessWidget {
                       ),
                       Text(
                         '${this.total} ratings',
-                        style:
-                        TextStyle(color: const Color(0xff919191), fontSize: 12),
+                        style: TextStyle(
+                            color: const Color(0xff919191), fontSize: 12),
                       ),
                     ],
                   ),
@@ -105,69 +109,27 @@ class StarReviews extends StatelessWidget {
         Visibility(
           visible: showBottom,
           child: Column(
-            children: <Widget>[
-              ProgressBarLayout(
-                starName: this.starNames[0],
-                value: this.values[0],
-                showPercentage: this.showPercentage,
-                starNameStyle: this.starNameStyle,
-                percentageStyle: this.percentageStyle,
-                valueColor: this.valueColor,
-                progressBarBackgroundColor: this.progressBarBackgroundColor,
-              ),
-              SizedBox(
-                height: 11,
-              ),
-              ProgressBarLayout(
-                starName: this.starNames[1],
-                value: this.values[1],
-                showPercentage: this.showPercentage,
-                starNameStyle: this.starNameStyle,
-                percentageStyle: this.percentageStyle,
-                valueColor: this.valueColor,
-                progressBarBackgroundColor: this.progressBarBackgroundColor,
-              ),
-              SizedBox(
-                height: 11,
-              ),
-              ProgressBarLayout(
-                starName: this.starNames[2],
-                value: this.values[2],
-                showPercentage: this.showPercentage,
-                starNameStyle: this.starNameStyle,
-                percentageStyle: this.percentageStyle,
-                valueColor: this.valueColor,
-                progressBarBackgroundColor: this.progressBarBackgroundColor,
-              ),
-              SizedBox(
-                height: 11,
-              ),
-              ProgressBarLayout(
-                starName: this.starNames[3],
-                value: this.values[3],
-                showPercentage: this.showPercentage,
-                starNameStyle: this.starNameStyle,
-                percentageStyle: this.percentageStyle,
-                valueColor: this.valueColor,
-                progressBarBackgroundColor: this.progressBarBackgroundColor,
-              ),
-              SizedBox(
-                height: 11,
-              ),
-              ProgressBarLayout(
-                starName: this.starNames[4],
-                value: this.values[4],
-                showPercentage: this.showPercentage,
-                starNameStyle: this.starNameStyle,
-                percentageStyle: this.percentageStyle,
-                valueColor: this.valueColor,
-                progressBarBackgroundColor: this.progressBarBackgroundColor,
-              ),
-              SizedBox(
-                height: 11,
-              ),
-            ],
-          ),
+              children: this
+                  .starNames
+                  .map((e) => Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          ProgressBarLayout(
+                            starName: e,
+                            value: this.values[this.starNames.indexOf(e)],
+                            showPercentage: this.showPercentage,
+                            starNameStyle: this.starNameStyle,
+                            percentageStyle: this.percentageStyle,
+                            valueColor: this.valueColor,
+                            progressBarBackgroundColor:
+                                this.progressBarBackgroundColor,
+                          ),
+                          SizedBox(
+                            height: 11,
+                          ),
+                        ],
+                      ))
+                  .toList()),
         )
       ],
     ));
@@ -179,51 +141,5 @@ class StarReviews extends StatelessWidget {
     double d = number;
     d = (d * fac).round() / fac;
     return d;
-  }
-
-  double getAverage() {
-    double total = 0;
-    this.values.forEach((value) {
-      total += value;
-    });
-
-    int fac = pow(10, 2);
-    double d = total / 5;
-
-    return _roundDecimal(((d * fac).round() / fac) * 10);
-  }
-}
-
-class _StarDisplay extends StatelessWidget {
-  final double value;
-  final double size;
-  final Color color;
-
-  const _StarDisplay(
-      {Key key,
-        this.value = 0,
-        this.size = 16,
-        this.color = const Color(0xffffd900)})
-      : assert(value != null),
-        super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: List.generate(5, (index) {
-        return Icon(
-          (value == 5)
-              ? Icons.star
-              : index + 1 < value
-              ? Icons.star
-              : (index == value.toInt() && value % 1 != 0)
-              ? Icons.star_half
-              : Icons.star_border,
-          color: this.color,
-          size: this.size,
-        );
-      }),
-    );
   }
 }

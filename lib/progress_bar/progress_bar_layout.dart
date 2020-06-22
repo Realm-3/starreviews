@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:starreviews/progressbar.dart';
+import 'package:starreviews/progress_bar/progress_bar.dart';
 
 class ProgressBarLayout extends StatelessWidget {
   final String starName;
