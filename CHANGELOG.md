@@ -14,3 +14,10 @@ All notable changes to this project will be documented in this file.
 
 -   Changed average star display
 
+## 1.0.2 - 2020-06-22
+
+### Changed
+
+-   Added dynamic number feature
+-   Added a new design `StarReviewsHorizontal`
+

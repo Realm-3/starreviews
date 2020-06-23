@@ -15,8 +15,8 @@ class App extends StatelessWidget {
 
 class MyApp extends StatelessWidget {
 
-List<String> _names = ['Star 5', 'Star 4', 'Star 3', 'Star 2', 'Star 1', 'Star 2', 'Star 1'];
-List<double> _values = [0.1, 0.3, 0.4, 0.1, 0.1, 0.1, 0.1];
+List<String> _names = ['Star 5', 'Star 4', 'Star 3', 'Star 2', 'Star 1'];
+List<double> _values = [0.1, 0.3, 0.4, 0.1, 0.1];
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,18 @@ List<double> _values = [0.1, 0.3, 0.4, 0.1, 0.1, 0.1, 0.1];
                 average: 5,
               ),
               SizedBox(height: 30,),
-            ],
+            StarReviewsHorizontal(
+              total: 30,
+              starNames: _names,
+              showProgressBarBorder: false,
+              valueColor: Colors.black,
+              progressBarBackgroundColor: Colors.grey.withOpacity(0.4),
+              values: _values,
+              showPercentage: true,
+              starColor: Colors.black,
+              average: 4.2,
+            )
+          ],
           ),
         )
       ),

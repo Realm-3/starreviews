@@ -8,7 +8,7 @@ A flutter package for displaying detailed star reviews
 
 ```yaml
 dependencies:  
-  starreviews: ^1.0.1
+  starreviews: ^1.0.2
 ```
 
 ```console
@@ -27,10 +27,24 @@ List<double> _values = [0.5, 0.2, 0.8, 0.5, 0.1];
 ```
 ```dart
 StarReviews(  
-  total: 20,  
-  starNames: _names,  
-  values: _values,  
-  showPercentage: true,  
+    total: 20,  
+    starNames: _names,  
+    values: _values,  
+    showPercentage: true,  
+    average: 3.2,
+)
+```
+```dart
+StarReviewsHorizontal(
+    total: 30,
+    starNames: _names,
+    showProgressBarBorder: false,
+    valueColor: Colors.black,
+    progressBarBackgroundColor: Colors.grey.withOpacity(0.4),
+    values: _values,
+    showPercentage: true,
+    starColor: Colors.black,
+    average: 4.2,
 )
 ```
 
@@ -51,6 +65,8 @@ Here is a list of properties available to customize the widget:
 | values| List<double>| list of review values as `double`                     	|
 | starSize| double| the size of the stars                     	|
 | starColor| Color| the color of the stars                     	|
+| average| double| the average number that'll be displayed                     	|
+| showProgressBarBorder| bool| option to hide borders of the progress bar                     	|
 
   
 ## Contributions

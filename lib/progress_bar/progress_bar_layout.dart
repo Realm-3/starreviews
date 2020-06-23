@@ -11,18 +11,21 @@ class ProgressBarLayout extends StatelessWidget {
   final Color progressBarBackgroundColor;
   final double value;
 
+  final bool showBorder;
+
   ProgressBarLayout(
-        {Key key,
-          this.starName,
-          this.showPercentage = true,
-          this.starNameStyle = const TextStyle(fontSize: 12),
-          this.percentageStyle = const TextStyle(fontSize: 12),
-          this.valueColor = const Color(0xff656565),
-          this.progressBarBackgroundColor = Colors.white,
-          this.value})
-    : super(key: key) {
+      {Key key,
+      this.starName,
+      this.showBorder = true,
+      this.showPercentage = true,
+      this.starNameStyle = const TextStyle(fontSize: 12),
+      this.percentageStyle = const TextStyle(fontSize: 12),
+      this.valueColor = const Color(0xff656565),
+      this.progressBarBackgroundColor = Colors.white,
+      this.value})
+      : super(key: key) {
     if (value == null) {
-    throw ArgumentError('value cannot be empty');
+      throw ArgumentError('value cannot be empty');
     }
 
     if (starName == null) {
@@ -41,6 +44,7 @@ class ProgressBarLayout extends StatelessWidget {
           ),
           Expanded(
             child: ProgressBar(
+              showBorder: this.showBorder,
               value: this.value,
               valueColor: this.valueColor,
               backgroundColor: this.progressBarBackgroundColor,

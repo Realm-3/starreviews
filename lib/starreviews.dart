@@ -25,12 +25,14 @@ class StarReviews extends StatelessWidget {
   final Color starColor;
 
   final double average;
+  final bool showProgressBarBorder;
 
   StarReviews(
       {Key key,
       @required this.total,
       @required this.starNames,
       this.starSize = 16,
+      this.showProgressBarBorder = true,
       this.starColor = const Color(0xffffd900),
       this.showRatingNumber = true,
       this.showHeader = true,
@@ -116,6 +118,7 @@ class StarReviews extends StatelessWidget {
                         children: <Widget>[
                           ProgressBarLayout(
                             starName: e,
+                            showBorder: showProgressBarBorder,
                             value: this.values[this.starNames.indexOf(e)],
                             showPercentage: this.showPercentage,
                             starNameStyle: this.starNameStyle,
@@ -134,12 +137,117 @@ class StarReviews extends StatelessWidget {
       ],
     ));
   }
+}
 
-  double _roundDecimal(double number) {
-    int decimals = 1;
-    int fac = pow(10, decimals);
-    double d = number;
-    d = (d * fac).round() / fac;
-    return d;
+class StarReviewsHorizontal extends StatelessWidget {
+  final int total;
+  final bool showRatingNumber;
+
+  final List<String> starNames;
+  final TextStyle starNameStyle;
+  final TextStyle percentageStyle;
+  final bool showPercentage;
+
+  final Color valueColor;
+  final Color progressBarBackgroundColor;
+  final List<double> values;
+
+  final double starSize;
+  final Color starColor;
+
+  final double average;
+
+  final bool showOnlyAverage;
+  final bool showProgressBarBorder;
+  final TextStyle averageNumberTextStyle;
+  final double spaceBetween;
+
+  StarReviewsHorizontal(
+      {Key key,
+      @required this.total,
+      @required this.starNames,
+      this.starSize = 12,
+      this.spaceBetween = 30,
+      this.showProgressBarBorder = true,
+      this.showOnlyAverage = false,
+      this.starColor = const Color(0xffffd900),
+      this.showRatingNumber = true,
+      this.showPercentage = true,
+      this.starNameStyle = const TextStyle(fontSize: 12),
+      this.percentageStyle = const TextStyle(fontSize: 12),
+      this.averageNumberTextStyle =
+          const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+      this.valueColor = const Color(0xff656565),
+      this.progressBarBackgroundColor = Colors.white,
+      @required this.average,
+      @required this.values})
+      : assert(total != null),
+        super(key: key) {
+    if (values == null) {
+      throw ArgumentError('value cannot be empty');
+    }
+
+    if (starNames.length != values.length) {
+      throw ArgumentError('startNames and values\' length different');
+    }
+
+    if (starNames == null) {
+      throw ArgumentError('starNames cannot be empty');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Row(
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              Text(
+                this.average.toString(),
+                style: this.averageNumberTextStyle,
+              ),
+              StarDisplay(
+                value: this.average,
+                size: starSize,
+                color: this.starColor,
+                starCounts: this.starNames.length,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                '${this.total} ratings',
+                style: TextStyle(fontSize: 10),
+              )
+            ],
+          ),
+          SizedBox(
+            width: this.spaceBetween,
+          ),
+          if (!this.showOnlyAverage) ...[
+            Expanded(
+              child: StarReviews(
+                total: this.total,
+                starNames: this.starNames,
+                starSize: this.starSize,
+                starColor: this.starColor,
+                showRatingNumber: this.showRatingNumber,
+                showHeader: false,
+                showBottom: true,
+                showPercentage: this.showPercentage,
+                starNameStyle: this.starNameStyle,
+                percentageStyle: this.percentageStyle,
+                valueColor: this.valueColor,
+                showProgressBarBorder: this.showProgressBarBorder,
+                progressBarBackgroundColor: this.progressBarBackgroundColor,
+                average: this.average,
+                values: this.values,
+              ),
+            )
+          ]
+        ],
+      ),
+    );
   }
 }

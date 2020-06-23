@@ -6,16 +6,18 @@ class ProgressBar extends StatelessWidget {
   final Color backgroundColor;
   final double value;
 
-  ProgressBar({Key key, this.valueColor, this.backgroundColor, this.value})
+  final bool showBorder;
+
+  ProgressBar({Key key, this.valueColor, this.showBorder = true, this.backgroundColor, this.value})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(2),
-      decoration: BoxDecoration(
+      padding: EdgeInsets.all(this.showBorder ? 2 : 0),
+      decoration: this.showBorder ? BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(8)),
-          border: Border.all(width: 1, color: const Color(0xffcecece))),
+          border: Border.all(width: 1, color: const Color(0xffcecece))) : null,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),
         child: Container(
