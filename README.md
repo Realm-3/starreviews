@@ -8,7 +8,7 @@ A flutter package for displaying detailed star reviews
 
 ```yaml
 dependencies:  
-  starreviews: ^1.0.2
+  starreviews: ^1.0.4
 ```
 
 ```console

@@ -27,3 +27,9 @@ All notable changes to this project will be documented in this file.
 
 -   Added new params for customizable
 
+## 1.0.4 - 2020-06-22
+
+### Changed
+
+-   Added a new param for customizable
+

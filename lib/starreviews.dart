@@ -171,6 +171,8 @@ class StarReviewsHorizontal extends StatelessWidget {
   final double spaceBetweenBars;
   final double lineHeight;
 
+  final bool alignReviewsCenter;
+
   StarReviewsHorizontal(
       {Key key,
       @required this.total,
@@ -179,6 +181,7 @@ class StarReviewsHorizontal extends StatelessWidget {
       this.spaceBetweenBars = 5,
       this.lineHeight = 7,
       this.spaceBetween = 30,
+      this.alignReviewsCenter = true,
       this.showProgressBarBorder = true,
       this.showOnlyAverage = false,
       this.starColor = const Color(0xffffd900),
@@ -211,6 +214,7 @@ class StarReviewsHorizontal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Row(
+        crossAxisAlignment: this.alignReviewsCenter ? CrossAxisAlignment.center : CrossAxisAlignment.start,
         children: <Widget>[
           Column(
             children: <Widget>[
