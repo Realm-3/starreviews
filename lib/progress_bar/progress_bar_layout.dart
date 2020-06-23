@@ -12,10 +12,12 @@ class ProgressBarLayout extends StatelessWidget {
   final double value;
 
   final bool showBorder;
+  final double lineHeight;
 
   ProgressBarLayout(
       {Key key,
       this.starName,
+        this.lineHeight = 5,
       this.showBorder = true,
       this.showPercentage = true,
       this.starNameStyle = const TextStyle(fontSize: 12),
@@ -40,10 +42,11 @@ class ProgressBarLayout extends StatelessWidget {
         children: <Widget>[
           Text(this.starName, style: this.starNameStyle),
           SizedBox(
-            width: 10,
+            width: 20,
           ),
           Expanded(
             child: ProgressBar(
+              lineHeight: this.lineHeight,
               showBorder: this.showBorder,
               value: this.value,
               valueColor: this.valueColor,
@@ -55,7 +58,7 @@ class ProgressBarLayout extends StatelessWidget {
             child: Row(
               children: <Widget>[
                 SizedBox(
-                  width: 10,
+                  width: 20,
                 ),
                 Text((this.value * 100).toInt().toString() + '%',
                     style: this.percentageStyle)

@@ -6,9 +6,11 @@ class ProgressBar extends StatelessWidget {
   final Color backgroundColor;
   final double value;
 
+  final double lineHeight;
+
   final bool showBorder;
 
-  ProgressBar({Key key, this.valueColor, this.showBorder = true, this.backgroundColor, this.value})
+  ProgressBar({Key key, this.valueColor, this.lineHeight = 5, this.showBorder = true, this.backgroundColor, this.value})
       : super(key: key);
 
   @override
@@ -21,9 +23,9 @@ class ProgressBar extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),
         child: Container(
-          height: 10,
+          height: this.lineHeight,
           child: LinearPercentIndicator(
-            lineHeight: 10,
+            lineHeight: this.lineHeight,
             padding: null,
             linearStrokeCap: LinearStrokeCap.roundAll,
             percent: this.value,

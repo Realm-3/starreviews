@@ -21,3 +21,9 @@ All notable changes to this project will be documented in this file.
 -   Added dynamic number feature
 -   Added a new design `StarReviewsHorizontal`
 
+## 1.0.3 - 2020-06-22
+
+### Changed
+
+-   Added new params for customizable
+

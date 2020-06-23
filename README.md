@@ -67,6 +67,8 @@ Here is a list of properties available to customize the widget:
 | starColor| Color| the color of the stars                     	|
 | average| double| the average number that'll be displayed                     	|
 | showProgressBarBorder| bool| option to hide borders of the progress bar                     	|
+| lineHeight| double| height of the progress bar                     	|
+| spaceBetween| double| the space between progress bars                     	|
 
   
 ## Contributions

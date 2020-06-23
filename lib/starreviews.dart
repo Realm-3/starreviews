@@ -27,11 +27,16 @@ class StarReviews extends StatelessWidget {
   final double average;
   final bool showProgressBarBorder;
 
+  final double lineHeight;
+  final double spaceBetween;
+
   StarReviews(
       {Key key,
       @required this.total,
       @required this.starNames,
       this.starSize = 16,
+      this.lineHeight = 10,
+      this.spaceBetween = 11,
       this.showProgressBarBorder = true,
       this.starColor = const Color(0xffffd900),
       this.showRatingNumber = true,
@@ -118,6 +123,7 @@ class StarReviews extends StatelessWidget {
                         children: <Widget>[
                           ProgressBarLayout(
                             starName: e,
+                            lineHeight: this.lineHeight,
                             showBorder: showProgressBarBorder,
                             value: this.values[this.starNames.indexOf(e)],
                             showPercentage: this.showPercentage,
@@ -128,7 +134,7 @@ class StarReviews extends StatelessWidget {
                                 this.progressBarBackgroundColor,
                           ),
                           SizedBox(
-                            height: 11,
+                            height: this.spaceBetween,
                           ),
                         ],
                       ))
@@ -162,11 +168,16 @@ class StarReviewsHorizontal extends StatelessWidget {
   final TextStyle averageNumberTextStyle;
   final double spaceBetween;
 
+  final double spaceBetweenBars;
+  final double lineHeight;
+
   StarReviewsHorizontal(
       {Key key,
       @required this.total,
       @required this.starNames,
       this.starSize = 12,
+      this.spaceBetweenBars = 5,
+      this.lineHeight = 7,
       this.spaceBetween = 30,
       this.showProgressBarBorder = true,
       this.showOnlyAverage = false,
@@ -229,6 +240,8 @@ class StarReviewsHorizontal extends StatelessWidget {
             Expanded(
               child: StarReviews(
                 total: this.total,
+                spaceBetween: this.spaceBetweenBars,
+                lineHeight: this.lineHeight,
                 starNames: this.starNames,
                 starSize: this.starSize,
                 starColor: this.starColor,
