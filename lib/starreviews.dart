@@ -3,7 +3,7 @@ library starreviews;
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'file:///D:/GitHub/starreviews/lib/progress_bar/progress_bar_layout.dart';
+import 'package:starreviews/progress_bar/progress_bar_layout.dart';
 import 'package:starreviews/star_display.dart';
 
 class StarReviews extends StatelessWidget {

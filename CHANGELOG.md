@@ -33,3 +33,9 @@ All notable changes to this project will be documented in this file.
 
 -   Added a new param for customizable
 
+## 1.0.5 - 2020-07-23
+
+### Changed
+
+-   Fixed a bug
+
